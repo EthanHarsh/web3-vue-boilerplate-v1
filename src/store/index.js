@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import state from './state.js'
+import state from '@/store/state'
 import getWeb3 from '@/utils/getWeb3'
 
 Vue.use(Vuex);
@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
         registerWeb3Instance (state, payload) {
             console.log('registerWeb3instance Mutation being executed', payload)
             let result = payload
-            let Web3Copy = state.web3
+            let web3Copy = state.web3
             web3Copy.coinbase = result.coinbase
             web3Copy.networkId = result.networkId
             web3Copy.balance = parseInt(result.balance, 10),
