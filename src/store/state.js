@@ -3,8 +3,9 @@ let state = {
         isInjected: false,
         web3Instance: null,
         networkId: null,
-        coinbase: null,
+        account: null,
         balance: null,
+        stdBalance: null,
         error: null,
     },
     contractInstance: null
