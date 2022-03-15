@@ -1,7 +1,11 @@
-FROM node:alpine
-COPY . /app
-COPY install.sh .
-WORKDIR ./app
-RUN chmod +x /install.sh
-RUN /install.sh
-CMD npm run start
+FROM node:latest as build-stage
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+RUN npm run build
+
+FROM nginx as production-stage
+RUN mkdir /app
+COPY --from=build-stage /app/dist /app
+COPY nginx.conf /etc/nginx/nginx.conf
