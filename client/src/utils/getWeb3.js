@@ -61,7 +61,6 @@ let getWeb3 = new Promise((resolve, reject) => {
                 if (err) {
                     reject(new Error('Unable to retrieve balance for address: ' + result.account))
                 } else {
-                    console.log(balance)
                     result = Object.assign({}, result, {stdBalance: balance})
                     balance = Web3.utils.fromWei(balance)
                     result = Object.assign({}, result, {balance})

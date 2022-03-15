@@ -13,7 +13,6 @@ export const store = new Vuex.Store({
         registerWeb3Instance (state, payload) {
             console.log('registerWeb3instance Mutation being executed', payload)
             let result = payload
-            console.log(result)
             let web3Copy = state.web3
             web3Copy.account = result.account
             web3Copy.networkId = NETWORKS[result.networkId]
