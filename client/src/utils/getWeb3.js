@@ -12,7 +12,6 @@ let getWeb3 = new Promise((resolve, reject) => {
     // Check for injected web3 (mist/metamask)
     //var web3js = window.web3
     if (window.ethereum) {
-        window.ethereum.request({method: 'eth_requestAccounts'})
         let web3 = new Web3(window.ethereum);
         resolve({
             injectedWeb3: web3,

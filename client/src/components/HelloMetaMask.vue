@@ -30,6 +30,8 @@ import FButton from "fantom-vue-components/src/components/FButton/FButton.vue";
 import FEllipsis from "fantom-vue-components/src/components/FEllipsis/FEllipsis.vue";
 import FCard from "fantom-vue-components/src/components/FCard/FCard.vue";
 import FWindow from "fantom-vue-components/src/components/FWindow/FWindow.vue";
+import getWeb3V2 from "@/utils/getWeb3-v2";
+
 export default {
   name: "hello-metamask",
   components: { FButton, FEllipsis, FCard, FWindow },
@@ -39,9 +41,11 @@ export default {
     },
   },
   methods: {
-    onClick() {
+    async onClick() {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
       console.log("registerWeb3 Action dispatched from MainApp.vue");
-      this.$store.dispatch("registerWeb3");
+      const result = await getWeb3V2();
+      this.$store.commit("updateWeb3", result);
       this.$refs.win.show();
     },
   },
